@@ -14,11 +14,8 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
-            - name: Get or create the storage directory
-              uses: hardliner66/ci-storage/get@v1
-
             - name: Use, update or create some data
-              run: node increment-count.js "$CI_STORAGE_PATH/data.json"
-
-            - name: Persist changes to storage
-              uses: hardliner66/ci-storage/persist@v1
+              uses: hardliner66/ci-storage@v1
+              with:
+                  script: |
+                      node increment-count.js "$CI_STORAGE_PATH/data.json"
